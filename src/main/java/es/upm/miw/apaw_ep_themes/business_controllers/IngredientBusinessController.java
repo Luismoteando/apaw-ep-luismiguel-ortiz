@@ -5,7 +5,9 @@ import es.upm.miw.apaw_ep_themes.documents.Ingredient;
 import es.upm.miw.apaw_ep_themes.dtos.IngredientBasicDto;
 import es.upm.miw.apaw_ep_themes.dtos.IngredientCreationDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class IngredientBusinessController {
 
     private IngredientDao ingredientDao;
