@@ -3,10 +3,10 @@
 > Este proyecto es un apoyo docente de la asignatura. Se quiere mostrar un ejemplo completo de un API-Rest para comprender la arquitectura y su proceso evolutivo
 
 ### Estado del código
-[![Build Status](https://travis-ci.org/miw-upm/apaw-ep-themes.svg?branch=develop)](https://travis-ci.org/miw-upm/apaw-ep-themes)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=es.upm.miw%3Aapaw-ep-themes&metric=alert_status)](https://sonarcloud.io/dashboard?id=es.upm.miw%3Aapaw-ep-themes)
-[![BCH compliance](https://bettercodehub.com/edge/badge/miw-upm/apaw-ep-themes?branch=develop)](https://bettercodehub.com/)
-[![Heroku broken](https://apaw-ep-themes.herokuapp.com/system/version-badge)](https://apaw-ep-themes.herokuapp.com/swagger-ui.html)
+[![Build Status](https://travis-ci.org/Luismoteando/apaw-ep-luismiguel-ortiz.svg?branch=develop)](https://travis-ci.org/Luismoteando/apaw-ep-luismiguel-ortiz)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=es.upm.miw%3Aapaw-ep-luismiguel-ortiz&metric=alert_status)](https://sonarcloud.io/dashboard?id=es.upm.miw%3Aapaw-ep-luismiguel-ortiz)
+[![BCH compliance](https://bettercodehub.com/edge/badge/Luismoteando/apaw-ep-luismiguel-ortiz?branch=develop)](https://bettercodehub.com/)
+[![Heroku broken](https://apaw-ep-luismiguel-ortiz.herokuapp.com/system/version-badge)](https://apaw-ep-luismiguel-ortiz.herokuapp.com/swagger-ui.html)
 
 ### Tecnologías necesarias
 * Java
@@ -31,4 +31,3 @@
 1. **Sonar**. En el fichero **.travis.yml**, cambiar en nombre de la organización de Sonarcloud 
 y crear la variable de entorno **SONAR** en la cuenta de Travis-CI asociado al proyecto
 1. **Heroku**. En el fichero **Procfile**, cambiar el nombre del *.jar para despliegue
-
