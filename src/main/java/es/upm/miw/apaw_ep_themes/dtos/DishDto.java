@@ -20,7 +20,6 @@ public class DishDto {
         this.glutenFree = dish.isGlutenFree();
     }
 
-
     public String getId() {
         return id;
     }
