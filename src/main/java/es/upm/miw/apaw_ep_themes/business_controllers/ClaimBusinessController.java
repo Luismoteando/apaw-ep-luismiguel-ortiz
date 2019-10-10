@@ -20,12 +20,10 @@ public class ClaimBusinessController {
 
     public void patch(String id, ClaimPatchDto claimPatchDto) {
         Claim claim = this.findClaimByIdAssured(id);
-        switch (claimPatchDto.getPath()) {
-            case "processed":
-                claim.setProcessed(Boolean.parseBoolean(claimPatchDto.getNewValue()));
-                break;
-            default:
-                throw new BadRequestException("ClaimPatchDto is invalid");
+        if (claimPatchDto.getPath().equals("processed")) {
+            claim.setProcessed(Boolean.parseBoolean(claimPatchDto.getNewValue()));
+        } else {
+            throw new BadRequestException("ClaimPatchDto is invalid");
         }
         this.claimDao.save(claim);
     }
