@@ -12,12 +12,12 @@ public class Recipe {
     @Id
     private String id;
 
-    private ArrayList<String> steps;
+    private List<String> steps;
 
     private ArrayList<Ingredient> ingredients;
 
     public Recipe(List<String> steps) {
-        this.steps = new ArrayList<>();
+        this.steps = steps;
         this.ingredients = new ArrayList<>();
     }
 
@@ -25,11 +25,11 @@ public class Recipe {
         return id;
     }
 
-    public ArrayList<String> getSteps() {
+    public List<String> getSteps() {
         return steps;
     }
 
-    public ArrayList<Ingredient> getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
