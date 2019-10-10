@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class IngredientResource {
 
     public static final String INGREDIENTS = "/ingredients";
-    private static final String ID_ID = "/{id}";
+    public static final String ID_ID = "/{id}";
 
     private IngredientBusinessController ingredientBusinessController;
 

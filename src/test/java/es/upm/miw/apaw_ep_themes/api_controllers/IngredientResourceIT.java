@@ -3,6 +3,7 @@ package es.upm.miw.apaw_ep_themes.api_controllers;
 import es.upm.miw.apaw_ep_themes.ApiTestConfig;
 import es.upm.miw.apaw_ep_themes.dtos.IngredientBasicDto;
 import es.upm.miw.apaw_ep_themes.dtos.IngredientCreationDto;
+import es.upm.miw.apaw_ep_themes.dtos.IngredientPatchDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,26 @@ class IngredientResourceIT {
         this.webTestClient
                 .post().uri(IngredientResource.INGREDIENTS)
                 .body(BodyInserters.fromObject(ingredientCreationDto))
+                .exchange()
+                .expectStatus().isEqualTo(HttpStatus.BAD_REQUEST);
+    }
+
+    @Test
+    void testPatchPortion() {
+        String id = createIngredient("potato").getId();
+        this.webTestClient
+                .patch().uri(IngredientResource.INGREDIENTS + IngredientResource.ID_ID, id)
+                .body(BodyInserters.fromObject(new IngredientPatchDto("portion", "2.0")))
+                .exchange()
+                .expectStatus().isOk();
+    }
+
+    @Test
+    void testPatchPortionException() {
+        String id = createIngredient("potato").getId();
+        this.webTestClient
+                .patch().uri(IngredientResource.INGREDIENTS + IngredientResource.ID_ID, id)
+                .body(BodyInserters.fromObject(new IngredientPatchDto(null, "2.0")))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.BAD_REQUEST);
     }
