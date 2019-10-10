@@ -37,6 +37,18 @@ public class Ingredient {
         return unit;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPortion(double portion) {
+        this.portion = portion;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
     @Override
     public String toString() {
         return "Ingredient{" +
