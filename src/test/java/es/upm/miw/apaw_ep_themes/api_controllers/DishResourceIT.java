@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @ApiTestConfig
 public class DishResourceIT {
@@ -55,5 +56,19 @@ public class DishResourceIT {
                 .returnResult().getResponseBody();
         assertEquals(id, dishBasicDto.getId());
         assertEquals("tomato salad", dishBasicDto.getName());
+    }
+
+    @Test
+    void testSearch() {
+        List<DishBasicDto> dishes = this.webTestClient
+                .get().uri(uriBuilder ->
+                        uriBuilder.path(DishResource.DISHES + DishResource.SEARCH)
+                                .queryParam("q", "glutenFree:true")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(DishBasicDto.class)
+                .returnResult().getResponseBody();
+        assertFalse(dishes.isEmpty());
     }
 }
