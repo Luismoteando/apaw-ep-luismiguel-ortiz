@@ -31,4 +31,9 @@ public class ClaimBusinessController {
     private Claim findClaimByIdAssured(String id) {
         return this.claimDao.findById(id).orElseThrow(() -> new NotFoundException("Claim id: " + id));
     }
+
+    public void delete(String id) {
+        this.claimDao.delete(
+                this.claimDao.findById(id).orElseThrow(() -> new NotFoundException("Claim id: " + id)));
+    }
 }
