@@ -1,20 +1,32 @@
 package es.upm.miw.apaw_ep_themes.dtos;
 
-import es.upm.miw.apaw_ep_themes.exceptions.BadRequestException;
+import es.upm.miw.apaw_ep_themes.documents.Dish;
 
-public class DishCreationDto {
+public class DishDto {
+
+    String id;
 
     String name;
 
     boolean glutenFree;
 
-    public DishCreationDto() {
+    public DishDto() {
         //Empty for framework
     }
 
-    public DishCreationDto(String name, boolean glutenFree) {
-        this.name = name;
-        this.glutenFree = glutenFree;
+    public DishDto(Dish dish) {
+        this.id = dish.getId();
+        this.name = dish.getName();
+        this.glutenFree = dish.isGlutenFree();
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -33,16 +45,11 @@ public class DishCreationDto {
         this.glutenFree = glutenFree;
     }
 
-    public void validate() {
-        if (this.name == null) {
-            throw new BadRequestException("Incomplete DishCreationDto");
-        }
-    }
-
     @Override
     public String toString() {
-        return "DishCreationDto{" +
-                "name='" + name + '\'' +
+        return "DishDto{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", glutenFree=" + glutenFree +
                 '}';
     }

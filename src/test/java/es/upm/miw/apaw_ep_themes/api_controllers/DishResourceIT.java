@@ -5,7 +5,7 @@ import es.upm.miw.apaw_ep_themes.daos.DishDao;
 import es.upm.miw.apaw_ep_themes.daos.RecipeDao;
 import es.upm.miw.apaw_ep_themes.documents.Dish;
 import es.upm.miw.apaw_ep_themes.documents.Recipe;
-import es.upm.miw.apaw_ep_themes.dtos.DishBasicDto;
+import es.upm.miw.apaw_ep_themes.dtos.DishDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,26 +48,26 @@ public class DishResourceIT {
     @Test
     void testRead() {
         String id = this.dishDao.findById(dish.getId()).get().getId();
-        DishBasicDto dishBasicDto = this.webTestClient
+        DishDto dishDto = this.webTestClient
                 .get().uri(DishResource.DISHES + DishResource.ID_ID, id)
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(DishBasicDto.class)
+                .expectBody(DishDto.class)
                 .returnResult().getResponseBody();
-        assertEquals(id, dishBasicDto.getId());
-        assertEquals("tomato salad", dishBasicDto.getName());
+        assertEquals(id, dishDto.getId());
+        assertEquals("tomato salad", dishDto.getName());
     }
 
     @Test
     void testSearch() {
-        List<DishBasicDto> dishes = this.webTestClient
+        List<DishDto> dishes = this.webTestClient
                 .get().uri(uriBuilder ->
                         uriBuilder.path(DishResource.DISHES + DishResource.SEARCH)
                                 .queryParam("q", "glutenFree:true")
                                 .build())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(DishBasicDto.class)
+                .expectBodyList(DishDto.class)
                 .returnResult().getResponseBody();
         assertFalse(dishes.isEmpty());
     }
