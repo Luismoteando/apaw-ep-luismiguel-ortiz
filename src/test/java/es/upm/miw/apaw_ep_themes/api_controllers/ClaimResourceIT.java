@@ -47,4 +47,13 @@ public class ClaimResourceIT {
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.BAD_REQUEST);
     }
+
+    @Test
+    void testDelete() {
+        String id = this.claimDao.findById(claim.getId()).get().getId();
+        this.webTestClient
+                .delete().uri(ClaimResource.CLAIMS + ClaimResource.ID_ID, id)
+                .exchange()
+                .expectStatus().isOk();
+    }
 }

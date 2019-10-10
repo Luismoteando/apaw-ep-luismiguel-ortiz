@@ -24,4 +24,9 @@ public class ClaimResource {
         claimPatchDto.validate();
         this.claimBusinessController.patch(id, claimPatchDto);
     }
+
+    @DeleteMapping(value = ID_ID)
+    public void delete(@PathVariable String id) {
+        this.claimBusinessController.delete(id);
+    }
 }
