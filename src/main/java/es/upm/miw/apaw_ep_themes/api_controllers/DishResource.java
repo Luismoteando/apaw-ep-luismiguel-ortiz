@@ -2,11 +2,11 @@ package es.upm.miw.apaw_ep_themes.api_controllers;
 
 import es.upm.miw.apaw_ep_themes.business_controllers.DishBusinessController;
 import es.upm.miw.apaw_ep_themes.dtos.DishBasicDto;
+import es.upm.miw.apaw_ep_themes.exceptions.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(DishResource.DISHES)
@@ -14,6 +14,7 @@ public class DishResource {
 
     public static final String DISHES = "/dishes";
     public static final String ID_ID = "/{id}";
+    public static final String SEARCH = "/search";
 
     private DishBusinessController dishBusinessController;
 
@@ -25,5 +26,13 @@ public class DishResource {
     @GetMapping(value = ID_ID)
     public DishBasicDto read(@PathVariable String id) {
         return this.dishBusinessController.read(id);
+    }
+
+    @GetMapping(value = SEARCH)
+    public List<DishBasicDto> find(@RequestParam String q) {
+        if (!"glutenFree".equals(q.split(":")[0])) {
+            throw new BadRequestException("query param q is incorrect, missing 'glutenFree:'");
+        }
+        return this.dishBusinessController.findByGlutenFree(Boolean.parseBoolean(q.split(":")[1]));
     }
 }

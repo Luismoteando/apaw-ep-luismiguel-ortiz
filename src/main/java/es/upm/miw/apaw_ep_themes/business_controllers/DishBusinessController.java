@@ -7,6 +7,9 @@ import es.upm.miw.apaw_ep_themes.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 public class DishBusinessController {
 
@@ -23,5 +26,12 @@ public class DishBusinessController {
 
     private Dish findDishByIdAssured(String id) {
         return this.dishDao.findById(id).orElseThrow(() -> new NotFoundException("Dish id: " + id));
+    }
+
+    public List<DishBasicDto> findByGlutenFree(boolean glutenFree) {
+        return this.dishDao.findAll().stream()
+                .filter(dish -> dish.isGlutenFree() == glutenFree)
+                .map(DishBasicDto::new)
+                .collect(Collectors.toList());
     }
 }
