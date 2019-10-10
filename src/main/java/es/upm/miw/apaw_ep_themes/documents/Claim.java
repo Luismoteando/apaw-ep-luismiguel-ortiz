@@ -20,7 +20,6 @@ public class Claim {
     public Claim(String message) {
         this.message = message;
         this.localDateTime = LocalDateTime.now();
-        ;
         this.processed = false;
     }
 
