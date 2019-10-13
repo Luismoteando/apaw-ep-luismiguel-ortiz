@@ -2,8 +2,6 @@ package es.upm.miw.apaw_ep_themes.daos;
 
 import es.upm.miw.apaw_ep_themes.TestConfig;
 import es.upm.miw.apaw_ep_themes.documents.Claim;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,16 +17,10 @@ public class ClaimDaoIT {
 
     private Claim claim;
 
-    @BeforeEach
-    void before() {
-        this.claim = new Claim("The food was cold.");
-        this.claimDao.save(claim);
-    }
-
     @Test
     void testRead() {
-        Claim databaseClaim = this.claimDao.findById(claim.getId()).orElseGet(Assertions::fail);
-        assertTrue(databaseClaim.getLocalDateTime().isBefore(LocalDateTime.now()) &&
-                databaseClaim.isProcessed() == false);
+        claim = this.claimDao.findAll().get(0);
+        assertTrue(claim.getLocalDateTime().isBefore(LocalDateTime.now()) &&
+                claim.isProcessed() == false);
     }
 }
