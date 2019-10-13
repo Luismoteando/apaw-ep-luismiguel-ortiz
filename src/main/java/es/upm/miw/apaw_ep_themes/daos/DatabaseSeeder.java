@@ -58,7 +58,7 @@ public class DatabaseSeeder {
     }
 
     private void seedDishes() {
-        dish = new Dish("Tomato and fresh cheese salad", true, recipe);
+        dish = new DishBuilder().setName("Tomato and fresh cheese salad").setGlutenFree(true).setRecipe(recipe).createDish();
         this.dishDao.save(dish);
     }
 
