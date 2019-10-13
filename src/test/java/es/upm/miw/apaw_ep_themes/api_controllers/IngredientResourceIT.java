@@ -18,12 +18,6 @@ class IngredientResourceIT {
     @Autowired
     private WebTestClient webTestClient;
 
-    @Test
-    void testCreate() {
-        IngredientBasicDto ingredientBasicDto = createIngredient("tomato");
-        assertEquals("tomato", ingredientBasicDto.getName());
-    }
-
     IngredientBasicDto createIngredient(String name) {
         IngredientCreationDto ingredientCreationDto =
                 new IngredientCreationDto(name, 1.0, "lbs");
@@ -34,6 +28,12 @@ class IngredientResourceIT {
                 .expectStatus().isOk()
                 .expectBody(IngredientBasicDto.class)
                 .returnResult().getResponseBody();
+    }
+
+    @Test
+    void testCreate() {
+        IngredientBasicDto ingredientBasicDto = createIngredient("tomato");
+        assertEquals("tomato", ingredientBasicDto.getName());
     }
 
     @Test
