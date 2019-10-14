@@ -5,17 +5,17 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Dish {
+public class Dish extends DishComponent {
 
     @Id
-    String id;
+    private String id;
 
-    String name;
+    private String name;
 
-    boolean glutenFree;
+    private boolean glutenFree;
 
     @DBRef
-    Recipe recipe;
+    private Recipe recipe;
 
     public Dish(String name, boolean glutenFree, Recipe recipe) {
         this.name = name;
@@ -37,6 +37,21 @@ public class Dish {
 
     public Recipe getRecipe() {
         return recipe;
+    }
+
+    @Override
+    public void add(Dish dish) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void remove(Dish dish) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean isComposite() {
+        return false;
     }
 
     @Override
